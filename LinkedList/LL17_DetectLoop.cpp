@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+#include<unordered_map>
 using namespace std;
 
 // Always remember that null->next is not null.
@@ -26,32 +28,34 @@ void traverse(Node *head){
     cout<<temp->data;
     cout<<"\nLength: "<<len<<endl;
 }
-
-Node* findMiddleBrute(Node* head){
-    int c = 0; 
+void detectLoop(Node* head){
+    if(!head || !head->next){
+        cout<<"Loop is not present\n";
+        return;
+    }
     Node* temp = head;
+    unordered_map<Node*, int> mp;
     while(temp!=NULL){
-        c++;
-        temp = temp->next;
+        if(mp.find(temp)!=mp.end()){
+            cout<<"loop is present"<<endl;
+            return;
+        }
+        mp[temp] = 1;
+        temp=temp->next;
     }
-    int middleNode = (c/2)+1;
-    temp = head;
-    while(temp!=NULL){
-        middleNode--;
-        if(middleNode == 0) break;
-        temp = temp->next;
-    }
-    return temp;
+    cout<<"Loop is not present"<<endl;
 }
 
-Node* findMiddle(Node* head){
+bool detectLoopHarenTortoise(Node* head){
+    if(!head ||!head->next) return false;
+    Node* slow = head;
     Node* fast = head;
-    Node *slow = head;
     while(fast!=NULL && fast->next!=NULL){
         slow = slow->next;
         fast = fast->next->next;
+        if(slow == fast) return true;
     }
-    return slow;
+    return false;
 }
 
 int main(){
@@ -60,14 +64,10 @@ int main(){
     head->next->next = new Node(3);
     head->next->next->next = new Node(4);
     head->next->next->next->next = new Node(5);
-    // head->next->next->next->next->next = new Node(6);
-    traverse(head);
-
-    Node* mid = findMiddleBrute(head);
-    cout<<mid->data<<endl;
-
-    mid = findMiddle(head);
-    cout<<mid->data;
+    head->next->next->next->next->next = new Node(6);
+    head->next->next->next->next->next->next = head->next->next;
+    detectLoop(head);
+    detectLoopHarenTortoise(head)?cout<<"Cycle detected" : cout<<"No cycle";
 
 
 }
