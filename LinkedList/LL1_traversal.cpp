@@ -2,6 +2,7 @@
 #include<vector>
 using namespace std;
 
+// Always remember that null->next is not null.
 class Node{
     public:
         int data;
