@@ -32,7 +32,7 @@ public:
 
 		for (int i = 0; i < V; i++) {
 			if (!vis[i]) {
-				if (dfsCheck(i, adj, vis, pathVis) == true) return true;
+				if (dfsCheck(i, adj, vis, pathVis)) return true;
 			}
 		}
 		return false;

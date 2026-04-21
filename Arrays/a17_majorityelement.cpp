@@ -56,7 +56,7 @@ int optimal(vector<int> v){
 }
 
 int main(){
-    vector<int> v = {7,7,5,7,5,1,5,7,5,5,7,7,5,5,5,5};
+    vector<int> v = {7,7,5,7,5,1,5,7,5,5,7,7,5,8,3};
     cout<<bruteForce(v)<<endl;
     cout<<better(v)<<endl;
     cout<<optimal(v)<<endl;
