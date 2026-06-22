@@ -25,7 +25,7 @@ class DisjointSet{
         int ulp_u = findUltimatePar(u);
         int ulp_v = findUltimatePar(v);
         if(ulp_u == ulp_v) return;
-
+ 
         if(rank[ulp_u]<rank[ulp_v]){
             par[ulp_u] = ulp_v;
         }

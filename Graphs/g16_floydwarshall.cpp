@@ -25,7 +25,7 @@ void floydwarshall(vector<vector<int>> &adj){
     for(int i=0; i<nodes; i++){
         if(adj[i][i]<0){
             cout<<"Cycle is Present"<<endl;
-            break;
+            break; 
         }
     }
 }
